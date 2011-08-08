@@ -1,6 +1,6 @@
 var http = require("http"),
     sys = require("sys"),
-    io = require("socket.io"),
+    socketio = require("socket.io"),
     fs = require("fs"),
     mustache = require("mustache"),
     express = require("express"),
@@ -100,26 +100,26 @@ sys.debug("\x1b[1mExpress server started on port " + app.address().port + "\x1b[
 sockapp.listen(config.server.socketport);
 sys.debug("\x1b[1mExpress WebSocket server started on port " + sockapp.address().port + "\x1b[0m\n");
 
-var socket = io.listen(sockapp);
-socket.on("connection", function(client) {
+var io = socketio.listen(sockapp);
+io.sockets.on("connection", function(socket) {
   te.subscribeOnce("referee:welcome", function(msg) {
     var copy = JSON.parse(JSON.stringify(msg));
     msg.time = new Date().getTime();
-    client.send(msg);
+    socket.json.send(msg);
   });
-  te.publish("client:connect", client);
+  te.publish("socket:connect", socket);
 
-  client.on("message", function(msg) {
-    te.publish("client:message", client, msg);
+  socket.on("message", function(msg) {
+    te.publish("socket:message", socket, msg);
   });
 
-  client.on("disconnect", function() {
-    te.publish("client:disconnect", client);
+  socket.on("disconnect", function() {
+    te.publish("socket:disconnect", socket);
   });
 });
 
 te.subscribe("referee:update", function(msg) {
-  socket.broadcast(msg);
+  io.sockets.json.send(msg);
 });
 
 process.on("uncaughtException", function (err) {
