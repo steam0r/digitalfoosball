@@ -27,12 +27,12 @@ df.app = (function() {
 
   $(".js_quickstart").live("click",function(e) {
     e.preventDefault();
-    df.publish("client:event", "start");
+    df.publish("socket:event", "start");
   });
 
   $(".js_rematch").live("click",function(e) {
     e.preventDefault();
-    df.publish("client:event", "start", {rematch:true});
+    df.publish("socket:event", "start", {rematch:true});
   });
 
   $(".js_login").live("click",function(e) {
@@ -78,28 +78,28 @@ df.app = (function() {
     });
 
     if (!error) {
-      df.publish("client:event", "start", {"players": players});
+      df.publish("socket:event", "start", {"players": players});
     }
   });
 
   $(".js_quit").live("click",function(e) {
     e.preventDefault();
     actionIfPermitted(function() {
-      df.publish("client:event", "quit");
+      df.publish("socket:event", "quit");
     });
   });
 
   $(".js_abort").live("click",function(e) {
     e.preventDefault();
     actionIfPermitted(function() {
-      df.publish("client:event", "abort");
+      df.publish("socket:event", "abort");
     });
   });
 
   $(".js_undo").live("click",function(e) {
     e.preventDefault();
     !$(this).hasClass("js_disabled") && actionIfPermitted(function() {
-      df.publish("client:event", "undo");
+      df.publish("socket:event", "undo");
     });
   });
 

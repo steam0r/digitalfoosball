@@ -83,16 +83,16 @@ te.subscribe("assistant:resume", function(backup) {
   te.publish("referee:update", kickertable);
 });
 
-te.subscribe("client:connect", function(client) {
+te.subscribe("socket:connect", function(client) {
   te.publish("referee:welcome", kickertable);
 });
 
-te.subscribe("client:message", function(client, msg) {
+te.subscribe("socket:message", function(client, msg) {
   kickertable.host = client.sessionId;
   events[msg.event](msg.data);
 });
 
-te.subscribe("client:disconnect", function(client) {
+te.subscribe("socket:disconnect", function(client) {
   if (kickertable.host == client.sessionId) {
     kickertable.host = undefined;
     te.publish("referee:update", kickertable)

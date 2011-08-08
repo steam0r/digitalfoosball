@@ -3,18 +3,17 @@ df.socket = (function() {
       host;
 
   df.subscribe("ready", function() {
-    var socket = new io.Socket(df.config.socketconf.host, {
-      port: df.config.socketconf.port,
-      transports: ["websocket", "xhr-multipart", "xhr-polling", "jsonp-polling"], 
-      maxReconnectionAttempts: 50
+    var socket = io.connect(df.config.socketconf.host, {
+      'port': df.config.socketconf.port,
+      'max reconnection attempts': 50
     });
 
     socket.on("connect", function() {
-      df.publish("socket:clientId", socket.transport.sessionid);
+      df.publish("socket:clientId", socket.id);
     });
 
     socket.on("reconnect", function() {
-      df.publish("socket:clientId", socket.transport.sessionid);
+      df.publish("socket:clientId", socket.id);
     });
 
     socket.on("message", function(msg) {
@@ -30,11 +29,9 @@ df.socket = (function() {
 
       df.publish("socket:message", message);
     });
-    
-    socket.connect();
 
-    df.subscribe("client:event", function(event, data) {
-      socket.send({
+    df.subscribe("socket:event", function(event, data) {
+      socket.json.send({
         event: event,
         data: data
       });
