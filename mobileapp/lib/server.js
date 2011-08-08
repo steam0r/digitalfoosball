@@ -32,7 +32,7 @@ app.configure(function() {
 app.configure("production", function() {
   sys.debug("Using express.js config for \x1b[1mproduction\x1b[0m mode\n");
   app.use(express.logger({
-    format: ":date :method :status HTTP/:http-version :url :response-timems  :user-agent",
+    format: ":date :method :status HTTP/:http-version :url :response-time  :user-agent",
     stream: fs.createWriteStream(__dirname + "/../../../shared/logs/access_" + new Date().getTime() + ".log")
   }));
   app.use(express.errorHandler());
@@ -40,7 +40,7 @@ app.configure("production", function() {
 
 app.configure("development", function() {
   sys.debug("Using express.js config for \x1b[1mdevelopment\x1b[0m mode\n");
-  app.use(express.logger({format: "\x1b[1m:method\x1b[0m :status HTTP/:http-version \x1b[33m:url\x1b[0m :response-timems"}));
+  app.use(express.logger({format: "\x1b[1m:method\x1b[0m :status HTTP/:http-version \x1b[33m:url\x1b[0m :response-time"}));
   app.use(express.errorHandler({
     dumpExceptions: true,
     showStack: true
