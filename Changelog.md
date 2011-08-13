@@ -4,3 +4,4 @@
 
 * Updated socket.io to 0.7.8
 * Updated express to 2.4.4
+* Fixed layout on player statistic page

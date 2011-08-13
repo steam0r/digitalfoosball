@@ -15,7 +15,7 @@
             <hgroup>
               <h1 class="h1">{{locales.user.nemesis.hl}}</h1>
             </hgroup>
-            <a href="#!/statistic/{{name}}" class="user" {{#avatar}}style="background-image:url({{avatar}});"{{/avatar}}>{{{name}}</a>{{quote}}% {{locales.user.nemesis.lost}}
+            <a href="#!/statistic/{{name}}" class="user" {{#avatar}}style="background-image:url({{avatar}});"{{/avatar}}>{{{name}}<br />{{quote}}% {{locales.user.nemesis.lost}}</a>
           {{/nemesis}}
         </li>
         <li>
@@ -23,7 +23,7 @@
             <hgroup>
               <h1 class="h1">{{locales.user.teammate.hl}}</h1>
             </hgroup>
-            <a href="#!/statistic/{{name}}" class="user" {{#avatar}}style="background-image:url({{avatar}});"{{/avatar}}>{{name}}</a>{{quote}}% {{locales.user.teammate.won}}
+            <a href="#!/statistic/{{name}}" class="user" {{#avatar}}style="background-image:url({{avatar}});"{{/avatar}}>{{name}}<br />{{quote}}% {{locales.user.teammate.won}}</a>
           {{/teammate}}
         </li>
         <li>
@@ -31,7 +31,7 @@
             <hgroup>
               <h1 class="h1">{{locales.user.challenger.hl}}</h1>
             </hgroup>
-            <a href="#!/statistic/{{name}}" class="user" {{#avatar}}style="background-image:url({{avatar}});"{{/avatar}}>{{name}}</a>{{locales.user.challenger.rank}} {{rank}}
+            <a href="#!/statistic/{{name}}" class="user" {{#avatar}}style="background-image:url({{avatar}});"{{/avatar}}>{{name}}<br />{{locales.user.challenger.rank}} {{rank}}</a>
           {{/challenger}}
         </li>
       </ul>
