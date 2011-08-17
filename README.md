@@ -5,7 +5,7 @@ This is german engineering, so please read all instructions carefully. :-)
 
 ## Idea & Philosophy ##
 Bringing the analog foosball table into the digital age. 
-Because the web is our DNA, we're using Web Technologies to get it online. We also want to make usage of the latest and greatest HTML5/CSS3 technologies to show what's possible today. The idea is from the future, so the software is same.
+Because the web is our DNA, we're using Web Technologies to get it online. We also want to make usage of the latest and greatest HTML5/CSS3 technologies to show what's possible today. The idea is from the future, so is the software.
 
 
 ## Which modules are included ##
