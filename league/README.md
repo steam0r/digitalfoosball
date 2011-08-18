@@ -2,7 +2,7 @@
 
 ### Which software needs to be installed on the server side ###
 
-* `NodeJS 0.4.8`
+* `NodeJS 0.4.10`
 * `CouchDB 1.0.2`
 
 
@@ -40,5 +40,5 @@ First start your CouchDB server. Now you can start the `calc.js` script in the `
 
 ### Build Process ###
 We recommend you to setup up a build process in your deployment tool to create the minified versions of the Stylesheet and JavaScript by yourself.
-We're recommend [less.js](https://github.com/cloudhead/less.js) and [uglify-js](https://github.com/mishoo/UglifyJS/) for this task.
+We're recommending [less.js](https://github.com/cloudhead/less.js) and [uglify-js](https://github.com/mishoo/UglifyJS/) for this task.
 
