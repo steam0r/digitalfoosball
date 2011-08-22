@@ -2,7 +2,7 @@
 
 ### Which software needs to be installed on the server side ###
 
-* `NodeJS 0.4.10`
+* `NodeJS 0.4.11`
 * `CouchDB 1.0.2`
 
 
