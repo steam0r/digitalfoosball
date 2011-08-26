@@ -37,6 +37,10 @@
       "name": ":name"
     }
   }, {
+    "from": "/guide",
+    "to": "/_show/guide/config",
+    "method": "GET"
+  }, {
     "from": "/feed/ranked",
     "to": "/../../_changes",
     "method": "GET",

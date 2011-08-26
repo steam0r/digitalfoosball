@@ -1,7 +1,8 @@
 {
   "locale": "en_US",
   "global.title": "Foosball League",
-  "index.metanav.info": "Info",
+  "index.metanav.guide": "Guide",
+  "index.metanav.info": "About us",
   "index.mainnav.live": "Live Match",
   "index.mainnav.table": "Table",
   "index.mainnav.statistic": "Statistic",
