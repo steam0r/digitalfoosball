@@ -105,7 +105,7 @@ te.subscribe("press:avatars", function(avatars) {
 });
 
 te.subscribe("press:wrote", function(tweetId) {
-  game.tweetId = tweetId;
+  kickertable.game.tweetId = tweetId;
 
   if (kickertable.view === "summary") {
     te.publish("referee:update", kickertable);
