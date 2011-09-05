@@ -48,11 +48,53 @@ var events = {
     kickertable.host = undefined;
     te.publish("referee:update", kickertable);
   },
-  undo: function() {
-    kickertable.game.goals.pop();
+  undo: function(side) {
+    if(!side){
+      kickertable.game.goals.pop();
+    } else {
+      var idx;
+      for (idx = kickertable.game.goals.length - 1; idx >= 0; --i) {
+        if (kickertable.game.goals[idx].scorer === side) { break; }
+      }
+      var tmp = kickertable.game.goals.slice(idx+1);
+      kickertable.game.goals.length = idx;
+      kickertable.game.goals.push.apply(kickertable.game.goals, tmp);
+    }
     te.publish("referee:undo", kickertable.game);
+  },
+  amend: function(data){
+    if(data.goal == 'plus'){
+      addGoal(data.score);
+    } else if(data.goal == 'minus'){
+      events.undo(data.score);
+    }
   }
 };
+
+var addGoal = function(scorer) {
+  var goal = { 
+    type: "goal", 
+    scorer: scorer, 
+    time: new Date().getTime() 
+  };
+  
+  if (kickertable.view == "scoreboard") {
+    kickertable.game.goals.push(goal);
+  
+    if (kickertable.game.goals.filter(function(g) { return goal.scorer === g.scorer; }).length === 6) {
+      kickertable.view = "summary";
+      kickertable.game.tweetId = "-2";
+      kickertable.game.end = new Date().getTime();
+      te.publish("referee:finalwhistle", kickertable.game);
+    } else {
+      te.publish("referee:goal", kickertable.game);
+      te.publish("referee:update", kickertable);
+    }
+  } else {
+    te.publish("referee:fastgoal", goal);
+  }
+  
+}
 
 var resetGame = function(rematch) {
   kickertable.view = "home";
@@ -118,28 +160,11 @@ te.subscribe("announcer:announcement", function(msg) {
 });
 
 te.subscribe("arduino:goal", function(scorer) { 
-  var goal = { 
-    type: "goal", 
-    scorer: scorer, 
-    time: new Date().getTime() 
-  };
+  addGoal(scorer)
+});
 
-  if (kickertable.view == "scoreboard") {
-    kickertable.game.goals.push(goal);
-
-    if (kickertable.game.goals.filter(function(g) { return goal.scorer === g.scorer; }).length === 6) {
-      kickertable.view = "summary";
-      kickertable.game.tweetId = "-2";
-      kickertable.game.end = new Date().getTime();
-
-      te.publish("referee:finalwhistle", kickertable.game);
-    } else {
-      te.publish("referee:goal", kickertable.game);
-      te.publish("referee:update", kickertable);
-    }
-  } else {
-    te.publish("referee:fastgoal", goal);
-  }
+te.subscribe("arduino:undo", function(side) {
+  events.undo(side);
 });
 
 te.publish("referee:ready");

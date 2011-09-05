@@ -1,5 +1,6 @@
 df.dev = (function() {
   $(window).bind("keyup", function(e) {
+	console.log('###'+e.keyCode);
     if ($(".page.active form").length === 0) {
       if (e.keyCode === 72) {
         $.post("/events/goals/home")
@@ -19,6 +20,9 @@ df.dev = (function() {
       } else if (e.keyCode === 52) {
         /*$(".js_login[data-opponents=4]").trigger("click");
         console.log("Login 4");*/
+      } else if (e.keyCode === 85) {
+        $.post("/events/undo/home")
+        console.log("Goal HOME");
       }
     }
   });
