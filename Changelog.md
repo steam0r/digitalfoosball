@@ -1,5 +1,19 @@
 # Changelog
 
+### 0.2
+
+* Updated graph
+* Arduino: Added support for Ethernet
+* Arduino: Improved error handling
+
+---
+
+### 0.1.1a
+
+* Improved stability
+
+---
+
 ### 0.1.1
 
 * Updated socket.io to 0.7.9
