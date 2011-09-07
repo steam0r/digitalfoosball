@@ -52,11 +52,14 @@ var events = {
     if(!side){
       kickertable.game.goals.pop();
     } else {
-      var idx;
-      for (idx = kickertable.game.goals.length - 1; idx >= 0; --i) {
+      for (var idx = kickertable.game.goals.length - 1; idx >= 0; --idx) {
         if (kickertable.game.goals[idx].scorer === side) { break; }
       }
+      if(idx<0){
+        return;
+      }
       var tmp = kickertable.game.goals.slice(idx+1);
+      console.log(idx);
       kickertable.game.goals.length = idx;
       kickertable.game.goals.push.apply(kickertable.game.goals, tmp);
     }
