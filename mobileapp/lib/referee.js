@@ -89,7 +89,7 @@ te.subscribe("socket:connect", function(client) {
 
 te.subscribe("socket:message", function(client, msg) {
   kickertable.host = client.sessionId;
-  events[msg.event](msg.data);
+  (events[msg.event]) && events[msg.event](msg.data);
 });
 
 te.subscribe("socket:disconnect", function(client) {
