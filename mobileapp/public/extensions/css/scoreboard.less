@@ -29,53 +29,50 @@
         background: #000;
     }
 	.board{
-		width: 400px;
+	    @width:400px;
+		width: @width;
 		min-height: 200px;
 		margin: 0 auto;
 		position: relative;
 		dt{
+		    position: absolute;
+		    top:0;
+		    right:@width / 2;
+		    left:0;
 			font-size: 22px;
 			line-height: normal;
 			color: @s2k-green;
-			float: left;
-			width: 50%;
 			text-align: center;
+			#s2k-transition-time > .led;
+			~ dt {
+                right:0;
+                left:@width / 2;
+			}
 		}
-	}
-
-	> .settings{
-	    opacity: 0;
-        position: absolute;
-        top:0;
-        right:0;
-        left:0;
-        #s2k-transition-time > .led();
-	    a{
-	        position: absolute;
-	        font-size: 25px;
-	        &.change{
-                top:250px;
-                left:50%;
-                margin: 0 0 0 -20px;
-	        }
-	        &.plus{
-	            top:127px;
-	        }
-	        &.minus{
-	            top:187px;
-	        }
-	        &.home{
-	            right:50%;
-	            margin: 0 156px 0 0;
-	        }
-	        &.visitors{
-	            left:50%;
-	            margin: 0 0 0 156px;
-	        }
-	    }
-	}
-	> .settings.active{
-	    opacity: 1;
+		&.inverted{
+		    dt{
+                right:0;
+                left:@width / 2;
+		        ~ dt{
+                    right:@width / 2;
+                    left:0;
+		        }
+		    }
+		    ~ .settings{
+		        a {
+                    &.visitors{
+                        left:auto;
+                        right:50%;
+                        margin: 0 156px 0 0;
+                    }
+                    &.home{
+                        right:auto;
+                        left:50%;
+                        margin: 0 0 0 156px;
+                    }
+                }
+            }
+		}
 	}
 
 	.scorecard{
@@ -424,6 +421,43 @@
 
 	.players{
         display:none;
+	}
+
+	> .settings{
+	    opacity: 0;
+        position: absolute;
+        top:0;
+        right:0;
+        left:0;
+        #s2k-transition-time > .led;
+	    a{
+	        position: absolute;
+	        font-size: 25px;
+	        &.change{
+                top:250px;
+                left:50%;
+                margin: 0 0 0 -20px;
+	        }
+	        &.plus{
+	            top:127px;
+	        }
+	        &.minus{
+	            top:187px;
+	        }
+	        &.home{
+	            left:auto;
+	            right:50%;
+	            margin: 0 156px 0 0;
+	        }
+	        &.visitors{
+	            right:auto;
+	            left:50%;
+	            margin: 0 0 0 156px;
+	        }
+	    }
+	}
+	> .settings.active{
+	    opacity: 1;
 	}
 }
 
