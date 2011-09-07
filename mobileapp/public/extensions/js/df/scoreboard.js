@@ -20,7 +20,7 @@ df.scoreboard = (function() {
         cplayers = msg.game.players.home.concat(msg.game.players.visitors).join(",");
 
     ["home", "visitors"].forEach(function(side) {
-      $("#score" + side).attr("class", ["scorecard", ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"][goals[side]] || "full"].join(" "));
+      $("#score" + side).attr("data-score",goals[side]).attr("class", ["scorecard", ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"][goals[side]] || "full"].join(" "));
     });
 
     $("#scoreboard .js_undo")[goals.home + goals.visitors > 0 ? "removeClass" : "addClass"]("hide js_disabled");
