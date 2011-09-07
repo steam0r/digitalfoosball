@@ -43,6 +43,7 @@ df.app = (function() {
   $(".js_homeplus").live("click",function(e) {
     e.preventDefault();
     actionIfPermitted(function() {
+    ($(this).closest(".page").find("#scorehome").data("score") < 10) && actionIfPermitted(function() {
       df.publish("socket:event", "amend",{"score": "home", "goal":"plus"});
     });
   });
@@ -50,6 +51,7 @@ df.app = (function() {
   $(".js_homeminus").live("click",function(e) {
     e.preventDefault();
     actionIfPermitted(function() {
+    ($(this).closest(".page").find("#scorehome").data("score") > 0) && actionIfPermitted(function() {
       df.publish("socket:event", "amend",{"score": "home", "goal":"minus"});
     });
   });
@@ -57,6 +59,7 @@ df.app = (function() {
   $(".js_visitorsplus").live("click",function(e) {
     e.preventDefault();
     actionIfPermitted(function() {
+    ($(this).closest(".page").find("#scorevisitors").data("score") < 10) && actionIfPermitted(function() {
       df.publish("socket:event", "amend",{"score": "visitors", "goal":"plus"});
     });
   });
@@ -64,6 +67,7 @@ df.app = (function() {
   $(".js_visitorsminus").live("click",function(e) {
     e.preventDefault();
     actionIfPermitted(function() {
+    ($(this).closest(".page").find("#scorevisitors").data("score") > 0) && actionIfPermitted(function() {
       df.publish("socket:event", "amend",{"score": "visitors", "goal":"minus"});
     });
   });
