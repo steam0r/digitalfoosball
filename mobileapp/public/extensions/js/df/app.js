@@ -32,7 +32,7 @@ df.app = (function() {
 
   $(".js_setup").live("click",function(e) {
     e.preventDefault();
-    $(this).toggleClass("active").closest(".page").find("div.settings").toggleClass("active");
+    $(this).toggleClass("cancel").closest(".page").find("div.settings").toggleClass("active");
   });
 
   $(".js_invert").live("click",function(e) {
