@@ -2,7 +2,9 @@
 
 ### 0.2
 
-* Updated graph
+* League: refined media query rule
+* League: Updated graph
+* WebApp: Added settings screen
 * Arduino: Added support for Ethernet
 * Arduino: Improved error handling
 
