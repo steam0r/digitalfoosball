@@ -71,18 +71,10 @@
 			</div>
             {{#scoreboard}}
             <dl class="board {{#inverted}}inverted{{/inverted}}">
-                {{^inverted}}
                 <dt>{{home}}</dt>
                 <dd id="scorehome" class="scorecard full"></dd>
                 <dt>{{visitors}}</dt>
                 <dd id="scorevisitors" class="scorecard full"></dd>
-                {{/inverted}}
-                {{#inverted}}
-                <dt>{{visitors}}</dt>
-                <dd id="scorehome" class="scorecard full"></dd>
-                <dt>{{home}}</dt>
-                <dd id="scorevisitors" class="scorecard full"></dd>
-                {{/inverted}}
             </dl>
             {{/scoreboard}}
             <div class="players">
@@ -102,7 +94,7 @@
                 <a href="#settings" class="btn home plus js_homeplus">▲</a>
                 <a href="#settings" class="btn home minus js_homeminus">▼</a>
                 <a href="#settings" class="btn visitors plus js_visitorsplus">▲</a>
-                <a href="#settings" class="btn visitors minus js_visitorminus">▼</a>
+                <a href="#settings" class="btn visitors minus js_visitorsminus">▼</a>
             </div>
         </section>
 		<section id="summary" class="page">

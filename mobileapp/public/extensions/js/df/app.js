@@ -32,38 +32,39 @@ df.app = (function() {
 
   $(".js_setup").live("click",function(e) {
     e.preventDefault();
-    $(this).toggleClass("active").closest(".page").find("div.settings").toggleClass("active");
+    $(this).toggleClass("cancel").closest(".page").find("div.settings").toggleClass("active");
   });
 
   $(".js_invert").live("click",function(e) {
     e.preventDefault();
+    localStorage.setItem("df.scoreboard.inverted",(localStorage.getItem("df.scoreboard.inverted") == "yes" )?"no":"yes");
     $(this).closest(".page").find("dl.board").toggleClass("inverted");
   });
 
   $(".js_homeplus").live("click",function(e) {
     e.preventDefault();
-    actionIfPermitted(function() {
+    ($(this).closest(".page").find("#scorehome").data("score") < 10) && actionIfPermitted(function() {
       df.publish("socket:event", "amend",{"score": "home", "goal":"plus"});
     });
   });
 
   $(".js_homeminus").live("click",function(e) {
     e.preventDefault();
-    actionIfPermitted(function() {
+    ($(this).closest(".page").find("#scorehome").data("score") > 0) && actionIfPermitted(function() {
       df.publish("socket:event", "amend",{"score": "home", "goal":"minus"});
     });
   });
 
   $(".js_visitorsplus").live("click",function(e) {
     e.preventDefault();
-    actionIfPermitted(function() {
+    ($(this).closest(".page").find("#scorevisitors").data("score") < 10) && actionIfPermitted(function() {
       df.publish("socket:event", "amend",{"score": "visitors", "goal":"plus"});
     });
   });
 
   $(".js_visitorsminus").live("click",function(e) {
     e.preventDefault();
-    actionIfPermitted(function() {
+    ($(this).closest(".page").find("#scorevisitors").data("score") > 0) && actionIfPermitted(function() {
       df.publish("socket:event", "amend",{"score": "visitors", "goal":"minus"});
     });
   });
@@ -165,6 +166,15 @@ df.app = (function() {
     $(window).bind("load orientationchange", function(e){
       window.scrollTo(0, 1);
     });
+  }
+
+  if(localStorage.getItem("df.scoreboard.inverted") == "yes") {
+     $("#scoreboard dl.board").addClass("inverted");
+  } else if(localStorage.getItem("df.scoreboard.inverted") == "no") {
+     $("#scoreboard dl.board").removeClass("inverted");
+  } else{
+    localStorage.setItem("df.scoreboard.inverted",($("#scoreboard dl.board").hasClass("inverted"))?"yes":"no");
+
   }
 
   return {};
