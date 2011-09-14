@@ -43,28 +43,28 @@ df.app = (function() {
 
   $(".js_homeplus").live("click",function(e) {
     e.preventDefault();
-    ($(this).closest(".page").find("#scorehome").data("score") < 10) && actionIfPermitted(function() {
+    (~~(localStorage.getItem("df.scoreboard.score.home")) < 10) && actionIfPermitted(function() {
       df.publish("socket:event", "amend",{"score": "home", "goal":"plus"});
     });
   });
 
   $(".js_homeminus").live("click",function(e) {
     e.preventDefault();
-    ($(this).closest(".page").find("#scorehome").data("score") > 0) && actionIfPermitted(function() {
+    (~~(localStorage.getItem("df.scoreboard.score.home")) > 0) && actionIfPermitted(function() {
       df.publish("socket:event", "amend",{"score": "home", "goal":"minus"});
     });
   });
 
   $(".js_visitorsplus").live("click",function(e) {
     e.preventDefault();
-    ($(this).closest(".page").find("#scorevisitors").data("score") < 10) && actionIfPermitted(function() {
+    (~~(localStorage.getItem("df.scoreboard.score.visitors")) < 10) && actionIfPermitted(function() {
       df.publish("socket:event", "amend",{"score": "visitors", "goal":"plus"});
     });
   });
 
   $(".js_visitorsminus").live("click",function(e) {
     e.preventDefault();
-    ($(this).closest(".page").find("#scorevisitors").data("score") > 0) && actionIfPermitted(function() {
+    (~~(localStorage.getItem("df.scoreboard.score.visitors")) > 0) && actionIfPermitted(function() {
       df.publish("socket:event", "amend",{"score": "visitors", "goal":"minus"});
     });
   });
