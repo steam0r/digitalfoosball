@@ -162,7 +162,7 @@ te.subscribe("announcer:announcement", function(msg) {
   te.publish("referee:update", kickertable);
 });
 
-te.subscribe("arduino:goal", function(scorer) { 
+te.subscribe("arduino:goals", function(scorer) {
   addGoal(scorer)
 });
 
