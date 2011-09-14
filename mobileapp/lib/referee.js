@@ -6,6 +6,7 @@ var sys = require("sys"),
     press = require("./press"),
     te = require("./tableevents").TableEvents;
 
+
 var kickertable = {
   view: "home",
   host: null,
@@ -21,7 +22,11 @@ var kickertable = {
     tweetId: "",
     feed: []
   }
-};
+},
+ruleset = config.rulesets[config.ruleset],
+finalTimeout;
+
+
 
 var events = {
   start: function(data) {
@@ -59,7 +64,6 @@ var events = {
         return;
       }
       var tmp = kickertable.game.goals.slice(idx+1);
-      console.log(idx);
       kickertable.game.goals.length = idx;
       kickertable.game.goals.push.apply(kickertable.game.goals, tmp);
     }
@@ -83,11 +87,7 @@ var addGoal = function(scorer) {
   
   if (kickertable.view == "scoreboard") {
     kickertable.game.goals.push(goal);
-  
-    if (kickertable.game.goals.filter(function(g) { return goal.scorer === g.scorer; }).length === 6) {
-      kickertable.view = "summary";
-      kickertable.game.tweetId = "-2";
-      kickertable.game.end = new Date().getTime();
+    if (kickertable.game.goals.filter(function(g) { return goal.scorer === g.scorer; }).length === ruleset.max) {
       te.publish("referee:finalwhistle", kickertable.game);
     } else {
       te.publish("referee:goal", kickertable.game);
@@ -134,6 +134,7 @@ te.subscribe("socket:connect", function(client) {
 
 te.subscribe("socket:message", function(client, msg) {
   kickertable.host = client.sessionId;
+  clearTimeout(finalTimeout);
   (events[msg.event]) && events[msg.event](msg.data);
 });
 
@@ -159,7 +160,7 @@ te.subscribe("press:wrote", function(tweetId) {
 
 te.subscribe("announcer:announcement", function(msg) {
   kickertable.game.feed.push(msg);
-  te.publish("referee:update", kickertable);
+  te.publish("referee:update", kickertable); 
 });
 
 te.subscribe("arduino:goals", function(scorer) {

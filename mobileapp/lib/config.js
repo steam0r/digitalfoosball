@@ -4,7 +4,8 @@ var sys = require("sys"),
 exports.config = (function() {
   var configfiles = {
     base: __dirname+"/../config.json",
-    rev: __dirname+"/../rev.json"
+    rev: __dirname+"/../rev.json",
+    rules: __dirname+"/../rules.json"
   },
   config,
   reader;
