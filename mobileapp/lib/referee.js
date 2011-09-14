@@ -88,7 +88,13 @@ var addGoal = function(scorer) {
   if (kickertable.view == "scoreboard") {
     kickertable.game.goals.push(goal);
     if (kickertable.game.goals.filter(function(g) { return goal.scorer === g.scorer; }).length === ruleset.max) {
-      te.publish("referee:finalwhistle", kickertable.game);
+      te.publish("referee:update", kickertable);
+      finalTimeout = setTimeout(function(){
+        kickertable.view = "summary";
+        kickertable.game.tweetId = "-2";
+        kickertable.game.end = new Date().getTime();
+        te.publish("referee:finalwhistle", kickertable.game);
+      }, 2000);
     } else {
       te.publish("referee:goal", kickertable.game);
       te.publish("referee:update", kickertable);
