@@ -92,6 +92,6 @@
   "guide.league.text4": "On the right-hand side there is a history of your last matches.",
   "guide.league.text5": "On \"Statistics\" you can find various pieces of information about the league as a whole.",
   "guide.rating.h1": "Scoring",
-  "guide.rating.text1": "Die points are awarded according to the Elo-System. In simple words, you steal each others points. The stronger your opponent, the more points you get. Conversely this implies, winning against a weak opponent only gains you a few points. Moreover the frequency of your matches will be considered: the more often you play, the less points will be awarded.",
+  "guide.rating.text1": "The points are awarded according to the Elo-System. In simple words, you steal each others points. The stronger your opponent, the more points you get. Conversely this implies, winning against a weak opponent only gains you a few points. Moreover the frequency of your matches will be considered: the more often you play, the less points will be awarded.",
   "guide.rating.text2": "All in all this will keep the league more fair and more exciting."
 }
