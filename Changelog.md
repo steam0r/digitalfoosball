@@ -2,6 +2,11 @@
 
 ### 0.2
 
+* League: added simple ruleset config
+* League: new feed icons
+* League: new badge icons
+* League: added guide
+* League: added final goal delay
 * League: refined media query rule
 * League: Updated graph
 * WebApp: Added settings screen
