@@ -1,6 +1,6 @@
 function init() {
   var configfiles = {
-    base : __dirname+"/../config.json",
+    base : __dirname+"/config.json",
   }
   var obj = "";
   for (var file in configfiles) {

@@ -4,56 +4,38 @@
 [
   {
     "from": "/",
-    "to": "/_show/index/config",
+    "to": "/_show/index",
     "method": "GET"
   }, {
     "from": "/live",
-    "to": "/_list/live/ranked_games",
-    "method": "GET",
+    "to": "/_list/live/players",
+    "method": "GET"
+  }, {
+    "from": "/feed",
+    "to": "/_list/feed/ranked_games",
     "query": {
-      "descending": true
+      "limit": "5",
+      "descending": "true"
     }
   }, {
     "from": "/table",
-    "to": "/_list/table/ranked_games",
-    "method": "GET",
-    "query": {
-      "limit": 2,
-      "descending": true
-    }
+    "to": "/_list/table/players",
+    "method": "GET"
   }, {
     "from": "/statistic",
-    "to": "/_list/statistic/ranked_games",
-    "method": "GET",
-    "query": {
-      "descending": true
-    }
+    "to": "/_show/statistic/statistic",
+    "method": "GET"
   }, {
     "from": "/statistic/:name",
-    "to":"/_list/user/ranked_games",
+    "to":"/_list/user/players",
     "method": "GET",
     "query": {
-      "descending": true,
       "name": ":name"
     }
   }, {
     "from": "/guide",
     "to": "/_show/guide/config",
     "method": "GET"
-  }, {
-    "from": "/feed/ranked",
-    "to": "/../../_changes",
-    "method": "GET",
-    "query": {
-      "filter": "league/ranked_games"
-    }
-  }, {
-    "from": "/feed/unranked",
-    "to": "/../../_changes",
-    "method": "GET",
-    "query": {
-      "filter": "league/unranked_games"
-    }
   }, { // keeping relative urls sane
     "from": "/*",
     "to": "/*"
