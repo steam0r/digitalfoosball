@@ -36,6 +36,10 @@
     "from": "/guide",
     "to": "/_show/guide/config",
     "method": "GET"
+  }, {
+    "from": "/tos",
+    "to": "/_show/tos/config",
+    "method": "GET"
   }, { // keeping relative urls sane
     "from": "/*",
     "to": "/*"

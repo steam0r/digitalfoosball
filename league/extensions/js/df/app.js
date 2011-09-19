@@ -59,6 +59,14 @@ df.app = (function() {
         df.publish("app:guide", partial);
       });
     });
+
+    this.route("get", "#!/tos", function() {
+      var self = this;
+    	$.get("tos", function(partial) {
+        partial = navigate(self.path, partial);
+        df.publish("app:tos", partial);
+      });
+    });
   });
 
   df.subscribe("ready", function() {
