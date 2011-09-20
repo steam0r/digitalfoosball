@@ -1,5 +1,6 @@
 {
   "locale": "en_US",
+  "rev": "dev",
   "cdn": "http://cdn.yourdomain.com",
   "ga": "",
   "server": {
