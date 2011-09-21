@@ -119,7 +119,7 @@
   </script>
 
 {{#production}}
-	<script type="text/javascript" src="{{cdn}}{{#rev}}/{{rev}}{{/rev}}/extensions/js/basic-min.js"></script>
+	<script type="text/javascript" src="{{#cdn}}{{cdn}}{{#rev}}/{{rev}}{{/rev}}{{/cdn}}/extensions/js/basic-min.js"></script>
 {{/production}}
 {{^production}}
 	<script type="text/javascript" src="/extensions/js/basic.js"></script>
