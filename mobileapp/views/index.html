@@ -16,7 +16,7 @@
 	<link rel="apple-touch-icon" href="/images/favicons/fi_apple_touch.png" />
 
 {{#production}}
-	<link rel="stylesheet" type="text/css" href="{{cdn}}{{#rev}}/{{rev}}{{/rev}}/extensions/css/mobileapp-min.css" media="screen,projection,print" />
+	<link rel="stylesheet" type="text/css" href="{{#cdn}}{{cdn}}{{#rev}}/{{rev}}{{/rev}}{{/cdn}}/extensions/css/mobileapp-min.css" media="screen,projection,print" />
 {{/production}}
 {{^production}}
 	<link rel="stylesheet/less" type="text/css" href="/extensions/css/mobileapp.less" media="screen,projection,print" />
@@ -119,7 +119,7 @@
   </script>
 
 {{#production}}
-	<script type="text/javascript" src="{{cdn}}{{#rev}}/{{rev}}{{/rev}}/extensions/js/basic-min.js"></script>
+	<script type="text/javascript" src="{{#cdn}}{{cdn}}{{#rev}}/{{rev}}{{/rev}}{{/cdn}}/extensions/js/basic-min.js"></script>
 {{/production}}
 {{^production}}
 	<script type="text/javascript" src="/extensions/js/basic.js"></script>
