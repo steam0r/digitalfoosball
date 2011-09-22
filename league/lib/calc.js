@@ -120,7 +120,6 @@ var observe = function(since) {
     }
   };
   
-  console.log("path for observing: " + opts.path);
   http.get(opts, function(res) {
     var buffer = "";
     res.setEncoding("utf8");
@@ -128,7 +127,6 @@ var observe = function(since) {
       buffer += chunk;
       try {
         var ret = JSON.parse(buffer);
-        if (ret.doc) { console.log("add doc to queue") }
         ret.doc && queue.push(ret.doc);
         since = ret.seq || since;
         busy || calc();
@@ -330,6 +328,7 @@ var calc = function() {
         });
         res.on("end", function() {
           ret = JSON.parse(ret);
+
           statistic["_rev"] = ret.filter(function(doc) { if (doc.id === "statistic") { return doc; }})[0].rev;
           lastGame = currGame;
           calc();

@@ -24,11 +24,10 @@ function(head, req) {
     return (a.score > b.score) ? -1 : ((a.score < b.score) ? 1 : 0);
   });
 
-  data.players.length = 10;
+  data.players.length > 10 && (data.players.length = 10);
 
   var pos = 0,
       prev;
-
   for (var i = 0; i < data.players.length; ++i) {
     var player = data.players[i];
     ++pos;
