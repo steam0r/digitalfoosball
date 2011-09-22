@@ -26,6 +26,7 @@
   "ruleset": "default",
   "twitter": {
     "userId": "",
+    "hashtags": ["df"],
     "consumerKey": "",
     "consumerSecret": "",
     "accessToken": "",

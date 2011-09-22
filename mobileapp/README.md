@@ -33,5 +33,4 @@ We're recommend [less.js](https://github.com/cloudhead/less.js) and [uglify-js](
 
 
 ### Twitter ###
-The server tweets the game result to Twitter. If you don't want to use this, remove the twitter entry. Otherwise go to [twitter.com](http://twitter.com) create an account for your table and then register a new [twitter app](http://dev.twitter.com/) and enter the given credentials you'll see at the app. Only this allows the app to tweet.
-
+The server tweets the game result to Twitter. If you don't want to use this, remove the twitter entry. Otherwise go to [twitter.com](http://twitter.com) create an account for your table and then register a new [twitter app](http://dev.twitter.com/) and enter the given credentials you'll see at the app. Only this allows the app to tweet. You can also define an array of hashtags.

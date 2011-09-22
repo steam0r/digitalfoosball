@@ -20,7 +20,8 @@ te.subscribe("referee:finalwhistle", function(game) {
           winner: (home_won ? game.players.home : game.players.visitors).join(" " + locales["global.concat"] + " "),
           loser: (!home_won ? game.players.home : game.players.visitors).join(" " + locales["global.concat"] + " ")
         },
-        goals: goals
+        goals: goals,
+        hashtags: config.twitter.hashtags || []
       },
       tweet = mustache.to_html(locales[["press.tweet.", game.players.home.concat(game.players.visitors).length, "players"].join("")], data);
 
