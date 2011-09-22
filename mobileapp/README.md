@@ -1,9 +1,9 @@
 ## Part two: Mobile Webapp ##
 
 ### Which software needs to be installed on the server side ###
-* `NodeJS 0.4.11`
+* `NodeJS 0.4.12`
 * `NPM 1.0.26`
-* NPM Modules: `socket.io 0.7.9`, `express 2.4.x`, `oauth 0.9.x` and `mustache 0.3.x`
+* NPM Modules: `socket.io 0.8.4`, `express 2.4.x`, `oauth 0.9.x` and `mustache 0.3.x`
 
 
 ### Configuration ###
