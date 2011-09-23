@@ -19,7 +19,7 @@ var kickertable = {
       visitors: []
     },
     goals: [],
-    tweetId: "",
+    tweetURL: "",
     feed: []
   }
 },
@@ -91,7 +91,7 @@ var addGoal = function(scorer) {
       te.publish("referee:update", kickertable);
       finalTimeout = setTimeout(function(){
         kickertable.view = "summary";
-        kickertable.game.tweetId = "-2";
+        kickertable.game.tweetURL = "-2";
         kickertable.game.end = new Date().getTime();
         te.publish("referee:finalwhistle", kickertable.game);
       }, 2000);
@@ -109,7 +109,7 @@ var resetGame = function(rematch) {
   kickertable.view = "home";
   kickertable.game.start = 0;
   kickertable.game.end = 0;
-  kickertable.game.tweetId = "0";
+  kickertable.game.tweetURL = "0";
 
   if (rematch) {
     var home = kickertable.game.players.home;
@@ -156,8 +156,8 @@ te.subscribe("press:avatars", function(avatars) {
   te.publish("referee:update", kickertable);
 });
 
-te.subscribe("press:wrote", function(tweetId) {
-  kickertable.game.tweetId = tweetId;
+te.subscribe("press:wrote", function(tweetURL) {
+  kickertable.game.tweetURL = tweetURL;
 
   if (kickertable.view === "summary") {
     te.publish("referee:update", kickertable);
