@@ -34,11 +34,11 @@
     }
   }, {
     "from": "/guide",
-    "to": "/_show/guide/config",
+    "to": "/_show/guide",
     "method": "GET"
   }, {
     "from": "/tos",
-    "to": "/_show/tos/config",
+    "to": "/_show/tos",
     "method": "GET"
   }, { // keeping relative urls sane
     "from": "/*",
