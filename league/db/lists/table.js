@@ -3,7 +3,7 @@ function(head, req) {
   
   var mustache = require("lib/mustache"),
       template = this.templates["table.html"],
-      config = JSON.parse(this.config),
+      config = this.config,
       locales = JSON.parse(this.resources["locales_" + config.locale + ".json"]);
 
   var data = {
