@@ -1,7 +1,7 @@
 function(doc, req) {
   var mustache = require("lib/mustache"),
       template = this.templates["guide.html"],
-      config = JSON.parse(this.config),
+      config = this.config,
       locales = JSON.parse(this.resources["locales_" + config.locale + ".json"]),
       data = [];
 
