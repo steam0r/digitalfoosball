@@ -27,7 +27,7 @@
   "announcer.end.head": "That's it! Game is over!",
   "announcer.end.body": "Final score: {{#goals}}{{home}}:{{visitors}}{{/goals}}",
   "announcer.abort.head": "Game terminated!",
-  "announcer.abort.body": "We have a problem Houston... Stop it!"
+  "announcer.abort.body": "Houston, we have a problem!",
   "announcer.goal.head": "Goal! {{#goals}}{{home}}:{{visitors}} {{/goals}}for {{last_scorer}}",
   "announcer.goal.body": "",
   "announcer.foul.head": "Offside!",
