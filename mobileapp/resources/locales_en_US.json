@@ -23,7 +23,7 @@
   "dialog.confirm": "Yes",
   "dialog.cancel": "No",
   "announcer.start.head": "The game has started!",
-  "announcer.start.body": "{{#quickgame}}The players are unknown{{/quickgame}}{{^quickgame}}Opponents are: {{#players}}{{home}} versus {{visitors}}{{/players}}{{/quickgame}}",
+  "announcer.start.body": "{{#quickgame}}The players are unknown{{/quickgame}}{{^quickgame}}Players are: {{#players}}{{home}} versus {{visitors}}{{/players}}{{/quickgame}}",
   "announcer.end.head": "That's it! Game is over!",
   "announcer.end.body": "Final score: {{#goals}}{{home}}:{{visitors}}{{/goals}}",
   "announcer.abort.head": "Game terminated!",
