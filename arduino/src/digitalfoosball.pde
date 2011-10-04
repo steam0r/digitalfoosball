@@ -2,6 +2,9 @@
  ***  CONFIGURATION  ***
  ***********************/
 
+// Define the table ID here. Table IDs are required if you have multiple tables for one league.
+#define TABLE_ID "main"
+
 // Define the Internet connection type, may be:
 // - INTERNET_ETHERNET (Arduino Ethernet shield),
 // - INTERNET_WIFLY (Sparkfun WiFly shield), or
@@ -14,9 +17,11 @@
 // Example: {0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED}
 byte ETHERNET_MAC[] = {0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED};
 
-// ETHERNET only: IP address (must be assigned manually)
-// Example: {192, 168, 0, 177}
+// ETHERNET only: IP address, gateway, and subnet mask (must be assigned manually)
+// Example: {192, 168, 0, 177}, {192, 168, 0, 1}, {255, 255, 0, 0}
 byte ETHERNET_IP[] = {192, 168, 0, 177};
+byte ETHERNET_GATEWAY[] = {192, 168, 0, 1};
+byte ETHERNET_SUBNET[] = {255, 255, 0, 0};
 
 // WIFLY only: Wifi SSID
 // Example: "mywifi"
@@ -32,7 +37,7 @@ char SERVER_NAME[] = "www.example.org";
 byte SERVER_IP[] = {192, 0, 43, 10};
 
 // Configure context path (application base path), leave empty (not slash) for root
-// Examples: "/kikkazu", ""
+// Examples: "/mypath", ""
 char CONTEXT[] = "";
 
 
@@ -94,21 +99,18 @@ int failures = 0;
  ***  HELPER FUNCTIONS  ***
  **************************/
 
-void reset()
+void disconnect()
 {
-	associated = false;
-	connected = false;
-
 	#if defined(INTERNET_ETHERNET)
 		client.stop();
 		client = Client(SERVER_IP, 80);
-		Ethernet.begin(ETHERNET_MAC, ETHERNET_IP);
+		Ethernet.begin(ETHERNET_MAC, ETHERNET_IP, ETHERNET_GATEWAY, ETHERNET_SUBNET);
 		delay(1000);
 	#elif defined(INTERNET_WIFLY)
-		wiFly.begin();
+		client.disconnect();
 	#endif
 
-	failures = 0;
+	connected = false;
 }
 
 boolean ensureConnection(boolean checkWiFlyStatus)
@@ -123,13 +125,20 @@ boolean ensureConnection(boolean checkWiFlyStatus)
 
 			client.stop();
 			client = Client(SERVER_IP, 80);
-			Ethernet.begin(ETHERNET_MAC, ETHERNET_IP);
+			Ethernet.begin(ETHERNET_MAC, ETHERNET_IP, ETHERNET_GATEWAY, ETHERNET_SUBNET);
 			delay(1000);
 
-			if (!client.connect() || !client.connected())
+			if (!client.connect())
 			{
 				LOG("Connection FAILED, trying again later.\n");
 				flashError(1);
+				return false;
+			}
+
+			if (!client.connected())
+			{
+				LOG("Connection FAILED, trying again later.\n");
+				flashError(2);
 				return false;
 			}
 
@@ -207,6 +216,38 @@ boolean ensureConnection(boolean checkWiFlyStatus)
 	return true;
 }
 
+#ifdef INTERNET_ETHERNET
+	boolean findInEthernetResponse(const char * toMatch, unsigned int timeOut)
+	{
+		int byteRead;
+		unsigned long timeOutTarget;
+		for (unsigned int offset = 0; offset < strlen(toMatch); offset++)
+		{
+			timeOutTarget = millis() + timeOut;
+	
+			while (!client.available())
+			{
+				if (millis() > timeOutTarget)
+					return false;
+	
+				//delay(1);
+			}
+	
+			byteRead = client.read();
+			if (byteRead != toMatch[offset])
+			{
+				offset = 0;
+				if (byteRead != toMatch[offset])
+					offset = -1;
+	
+				continue;
+			}
+		}
+	
+		return true;
+	}
+#endif
+
 void flashError(int errorNo)
 {
 	int i;
@@ -229,6 +270,23 @@ void flashError(int errorNo)
 	}
 
 	delay(500);
+}
+
+void reset()
+{
+	associated = false;
+	connected = false;
+
+	#if defined(INTERNET_ETHERNET)
+		client.stop();
+		client = Client(SERVER_IP, 80);
+		Ethernet.begin(ETHERNET_MAC, ETHERNET_IP, ETHERNET_GATEWAY, ETHERNET_SUBNET);
+		delay(1000);
+	#elif defined(INTERNET_WIFLY)
+		wiFly.begin();
+	#endif
+
+	failures = 0;
 }
 
 
@@ -265,10 +323,8 @@ void setup()
 
 	#ifdef INTERNET_WIFLY
 		wiFly.begin();
-	#endif
 
-	#if defined(INTERNET_ETHERNET) || defined(INTERNET_WIFLY)
- 		while (!ensureConnection(true))
+		while (!ensureConnection(true))
 			delay(1000);
 	#endif
 
@@ -285,7 +341,7 @@ void setup()
 
 void loop()
 {
-	char string[256];
+	char string[512];
 
 	// Analyze inputs until we find a goal (HIGH is true)
 	// Also check that we are still connected to the server and access point
@@ -322,8 +378,8 @@ void loop()
 
 		// Send a POST to the goal server
 
-		char content[32];
-		sprintf(content, "token=%lu", token);
+		char content[128];
+		sprintf(content, "token=%lu&table=%s", token, TABLE_ID);
 		sprintf(string, "POST %s/events/goals/%s HTTP/1.1\r\n"
 		"Host: %s\r\n"
 			"User-Agent: Arduino/DigitalerKicker\r\n"
@@ -337,15 +393,15 @@ void loop()
 		LOG("\n");
 		#if defined(INTERNET_ETHERNET) || defined(INTERNET_WIFLY)
 			client.print(string);
-		#else
-			delay(500);
 		#endif
 
 		LOG("Request done, checking response...\n");
-
-		#ifdef INTERNET_WIFLY
+		#if defined(INTERNET_ETHERNET)
+			success = findInEthernetResponse("200 OK", 5000);
+		#elif defined(INTERNET_WIFLY)
 			success = wiFly.findInResponse("200 OK", 5000);
 		#else
+			delay(500);
 			success = true;
 		#endif
 
@@ -358,6 +414,8 @@ void loop()
 		{
 			LOG("Request FAILED.\n");
 			failures++;
+
+			disconnect();
 		}
 	}
 
@@ -385,11 +443,11 @@ void loop()
 
 	// Disconnect and preconnect again
 
-	#ifdef WIFI
-		client.disconnect();
-		connected = false;
-	#endif
-	ensureConnection(false);
+	if (success)
+	{
+		disconnect();
+		ensureConnection(false);
+	}
 
 	LOG("Ready for next goal.\n");
 }
