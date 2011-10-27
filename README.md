@@ -16,16 +16,15 @@ Of course is our Agency Foosball Table also powered by this software and it's da
 
 ### Arduino ###
 Hardware mounted to the foosball table, including light barriers und an Arduino board with Wifi shield.
-See our [Wiki](https://github.com/sinnerschrader/digitalfoosball/wiki/Installation-Instructions:-Part-one:-Hardware) where we explain the first part, how to turn an analog foosball table into a digital one, sending HTTP POSTs on every goal.
+See our [Wiki](https://github.com/sinnerschrader/digitalfoosball/wiki/Installation-Instructions:-Part-1:-Hardware) where we explain the first part, how to turn an analog foosball table into a digital one, sending HTTP POSTs on every goal.
 
 ### HTML5 Mobile Webapp with app server ###
 The mobile Webapp to start and stop the games and follow the score. It also includes the web server which sends the game events to the CouchDB and Twitter.
-Look at the included readme file and our [Wiki](https://github.com/sinnerschrader/digitalfoosball/wiki/Installation-Instructions:-Part-two:-Mobile-web-app) for installation help.
+Look at the included readme file and our [Wiki](https://github.com/sinnerschrader/digitalfoosball/wiki/Installation-Instructions:-Part-2:-Mobile-Webapp) for installation help.
 
 ### HTML5 CouchApp (League) ###
 The website which displays the game feeds, league and statistics.
-Release coming soon...
-
+Look at the included readme file and our [Wiki](https://github.com/sinnerschrader/digitalfoosball/wiki/Installation-Instructions:-Part-3:-League-CouchApp) for installation help.
 
 ## Q&A ##
 
