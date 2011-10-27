@@ -1,8 +1,7 @@
 {
   "id": "league",
   "mapDirectories": {
-    "config.js":  false,
-    "config.json": "config",
+    "config.soca.json": false,
     "config.sample.json": false,
     "extensions": "_attachments/extensions",
     "finish-build.sh": false,

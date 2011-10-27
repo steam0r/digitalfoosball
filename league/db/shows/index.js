@@ -2,7 +2,7 @@ function(doc, req) {
   var mustache = require("lib/mustache"),
       template = this.templates["index.html"],
       config = this.config,
-      locales = JSON.parse(this.resources["locales_" + config.locale + ".json"]);
+      locales = this.resources["locales_" + config.locale];
 
   var data = {
     production: config.env === "production",

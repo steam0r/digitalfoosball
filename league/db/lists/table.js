@@ -4,7 +4,7 @@ function(head, req) {
   var mustache = require("lib/mustache"),
       template = this.templates["table.html"],
       config = this.config,
-      locales = JSON.parse(this.resources["locales_" + config.locale + ".json"]);
+      locales = this.resources["locales_" + config.locale];
 
   var data = {
     players: []
