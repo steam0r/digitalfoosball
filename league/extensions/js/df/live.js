@@ -77,9 +77,9 @@ df.live = (function() {
         });
       }
 
-      $("#game").removeClass("hide").addClass("show");
+      $("aside").removeClass("hideboard").addClass("showboard");
     } else if(timer) {
-      $("#game").removeClass("show").addClass("hide");
+      $("aside").removeClass("showboard").addClass("hideboard");
       clearInterval(timer) && (timer = undefined);
     }
   };

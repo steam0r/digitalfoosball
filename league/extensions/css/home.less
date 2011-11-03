@@ -11,33 +11,41 @@
 
 .home{
 	aside{
-		padding: 30px 0 0;
+	    position: relative;
+	    padding: 30px 0 0;
+        -webkit-transform-style: preserve-3d;
+        -webkit-perspective: 400;
+        &.showboard{
+            #game{
+                -webkit-animation:slideInScoreBoard 1s ease-out 0s 1 alternate forwards;
+                -moz-animation:slideInScoreBoard 1s ease-out 0s 1 alternate forwards;
+                -o-animation:slideInScoreBoard 1s ease-out 0s 1 alternate forwards;
+                -ms-animation:slideInScoreBoard 1s ease-out 0s 1 alternate forwards;
+                animation:slideInScoreBoard 1s ease-out 0s 1 alternate forwards;
+            }
+            #feed{
+                -webkit-transform: translate3d(0,317px,0);
+            }
+        }
+        &.hideboard{
+            #game{
+                -webkit-animation:slideOutScoreBoard .8s ease-out 0 1 normal forwards;
+                -moz-animation:slideOutScoreBoard .8s ease-out 0 1 normal forwards;
+                -o-animation:slideOutScoreBoard .8s ease-out 0 1 normal forwards;
+                -ms-animation:slideOutScoreBoard .8s ease-out 0 1 normal forwards;
+                animation:slideOutScoreBoard .8s ease-out 0 1 normal forwards;
+            }
+        }
 		#game{
-		    opacity: 0;
-		    height:0;
-			position: relative;
-			background: @s2k-box-grey;
-			overflow:hidden;
-			-webkit-transform: translate3d(0,0,0);
-			&.show{
-                -webkit-animation-name:slideInScoreBoard;
-                -webkit-animation-duration:2s;
-                -moz-animation-name:slideInScoreBoard;
-                -moz-animation-duration:2s;
-                opacity: 1;
-                height:287px;
-    			margin-bottom: 30px;
-    			overflow:visible;
-			}
-			&.hide{
-                -webkit-animation-name:slideOutScoreBoard;
-                -webkit-animation-duration:2s;
-                -moz-animation-name:slideOutScoreBoard;
-                -moz-animation-duration:2s;
-                opacity: 0;
-                height:0;
-    			margin-bottom: 0;
-			}
+            position: absolute;
+            top:30px;
+            left:0;
+            right:0;
+            z-index: 1;
+            opacity: 0;
+            height:287px;
+            background: @s2k-box-grey;
+            -webkit-transform-origin: 50% 0;
 			time{
 				position: absolute;
 				top:-30px;
@@ -103,7 +111,8 @@
 			}
 		}
 		#feed{
-			ol{
+		    #s2k-transition-time > .long;
+		    ol{
 				margin: 0 0 40px;
 				background: @s2k-box-grey;
 				li{

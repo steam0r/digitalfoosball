@@ -14,7 +14,7 @@
 
 #s2k-transition-time {
 	@style:all ease-out;
-	
+
 	.no(){
 		@timer:none;
 		-webkit-transition: @timer;
@@ -34,6 +34,14 @@
 	.newrank(){
 	    @style:top ease-in-out;
 		@timer:2s;
+		-webkit-transition: @style @timer;
+		-moz-transition: @style @timer;
+		-o-transition: @style @timer;
+		-ms-transition: @style @timer;
+		transition: @style @timer;
+	}
+	.long(){
+		@timer:1s 0s;
 		-webkit-transition: @style @timer;
 		-moz-transition: @style @timer;
 		-o-transition: @style @timer;
@@ -67,7 +75,7 @@
 		-ms-transition: @style @timer;
 		transition: @style @timer;
 	}
-	
+
 	.lightbox(){
 		@style:all;
 		@timer:.3s ease-in-out,;
@@ -88,7 +96,7 @@
 	}
 }
 
-#s2k-transform {	
+#s2k-transform {
 	.lightbox(){
 		@transform:scale(0);
 		-webkit-transform: @transform;
@@ -96,10 +104,10 @@
 		-o-transform: @transform;
 		-ms-transform: @transform;
 		transform: @transform;
-	}	
+	}
 }
 
-#s2k-shadow {	
+#s2k-shadow {
 	.none{
 		@shadow-width:none;
 		-webkit-box-shadow: @shadow-width;
@@ -107,7 +115,7 @@
 		-ms-box-shadow: @shadow-width;
 		-o-box-shadow: @shadow-width;
 		box-shadow: @shadow-width;
-	}			
+	}
 	.led{
 		@shadow-color:#fff;
 		@shadow-width:10px;
@@ -116,7 +124,7 @@
 		-ms-box-shadow: 0 0 @shadow-width @shadow-color;
 		-o-box-shadow: 0 0 @shadow-width @shadow-color;
 		box-shadow: 0 0 @shadow-width @shadow-color;
-	}		
+	}
 	.dialog{
 		@shadow-color:#000;
 		@shadow-width:10px;
@@ -125,7 +133,7 @@
 		-ms-box-shadow: 0 0 @shadow-width @shadow-color;
 		-o-box-shadow: 0 0 @shadow-width @shadow-color;
 		box-shadow: 0 0 @shadow-width @shadow-color;
-	}			
+	}
 	.tab{
 		@shadow-color:#000;
 		@shadow-width:2px;
@@ -188,7 +196,7 @@
 		display: -ms-box;
 		display: box;
 	}
-	
+
 	.pack {
 		.start{
 			-webkit-box-pack:start;
@@ -228,7 +236,7 @@
 			box-align:end;
 		}
 	}
-	
+
 	.orient{
 		.vertical{
 			-webkit-box-orient: vertical;
