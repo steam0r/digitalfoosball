@@ -19,7 +19,7 @@
     100%    { -webkit-transform:translate3d(0,   0  , 0); }
 }
 
-@-webkit-keyframes slideInScoreBoard {
+@-webkit-keyframes showBoard {
 	0% {
 	    opacity: 0;
         -webkit-transform: scale(0);
@@ -29,7 +29,7 @@
         -webkit-transform: scale(1);
 	}
 }
-@-moz-keyframes slideInScoreBoard {
+@-moz-keyframes showBoard {
 	0% {
 	    opacity: 0;
         -moz-transform: scale(0);
@@ -39,7 +39,7 @@
         -moz-transform: scale(1);
 	}
 }
-@-o-keyframes slideInScoreBoard {
+@-o-keyframes showBoard {
 	0% {
 	    opacity: 0;
         -o-transform: scale(0);
@@ -49,7 +49,7 @@
         -o-transform: scale(1);
 	}
 }
-@-ms-keyframes slideInScoreBoard {
+@-ms-keyframes showBoard {
 	0% {
 	    opacity: 0;
         -ms-transform: scale(0);
@@ -59,7 +59,7 @@
         -ms-transform: scale(1);
 	}
 }
-@keyframes slideInScoreBoard {
+@keyframes showBoard {
 	0% {
 	    opacity: 0;
         transform: scale(0);
@@ -70,7 +70,7 @@
 	}
 }
 
-@-webkit-keyframes slideOutScoreBoard {
+@-webkit-keyframes hideBoard {
 	0% {
 	    opacity: 1;
 	}
@@ -79,7 +79,7 @@
 	    -webkit-transform: scale(0);
 	}
 }
-@-moz-keyframes slideOutScoreBoard {
+@-moz-keyframes hideBoard {
 	0% {
 	    opacity: 1;
 	}
@@ -88,7 +88,7 @@
 	    -moz-transform: scale(0);
 	}
 }
-@-o-keyframes slideOutScoreBoard {
+@-o-keyframes hideBoard {
 	0% {
 	    opacity: 1;
 	}
@@ -97,7 +97,7 @@
 	    -o-transform: scale(0);
 	}
 }
-@-ms-keyframes slideOutScoreBoard {
+@-ms-keyframes hideBoard {
 	0% {
 	    opacity: 1;
 	}
@@ -106,7 +106,7 @@
 	    -ms-transform: scale(0);
 	}
 }
-@keyframes slideOutScoreBoard {
+@keyframes hideBoard {
 	0% {
 	    opacity: 1;
 	}
