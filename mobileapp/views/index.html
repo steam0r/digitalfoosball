@@ -6,14 +6,17 @@
 	<meta name="language" content="{{locales.locale}}" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-	<link rel="apple-touch-startup-image" href="/images/startup.png" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
 
 	<!-- <meta name="description" content="🏆"/> -->
 	<meta name="robots" content="noindex,nofollow" />
 
-	<link rel="shortcut icon" href="/images/favicons/fi_standard.ico" type="image/x-icon" />
-	<link rel="apple-touch-icon" href="/images/favicons/fi_apple_touch.png" />
+	<link rel="shortcut icon" href="{{#cdn}}{{cdn}}{{#rev}}/{{rev}}{{/rev}}{{/cdn}}/images/favicons/fi_standard.ico" type="image/x-icon" />
+	<link rel="apple-touch-icon" href="{{#cdn}}{{cdn}}{{#rev}}/{{rev}}{{/rev}}{{/cdn}}/images/favicons/fi_apple_touch.png" />
+
+	<link rel="apple-touch-startup-image" href="{{#cdn}}{{cdn}}{{#rev}}/{{rev}}{{/rev}}{{/cdn}}/images/startup/ipad_landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)" />
+	<link rel="apple-touch-startup-image" href="{{#cdn}}{{cdn}}{{#rev}}/{{rev}}{{/rev}}{{/cdn}}/images/startup/ipad_portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)" />
+	<link rel="apple-touch-startup-image" href="{{#cdn}}{{cdn}}{{#rev}}/{{rev}}{{/rev}}{{/cdn}}/images/startup/iphone_portrait.png" media="screen and (max-device-width: 320px)" />
 
 {{#production}}
 	<link rel="stylesheet" type="text/css" href="{{#cdn}}{{cdn}}{{#rev}}/{{rev}}{{/rev}}{{/cdn}}/extensions/css/mobileapp-min.css" media="screen,projection,print" />
