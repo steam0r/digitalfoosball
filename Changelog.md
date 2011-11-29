@@ -1,5 +1,12 @@
 # Changelog
 
+### 0.2.1
+
+* Updated socket.io to 0.8.7
+* Updated zepto.js to 0.8
+
+---
+
 ### 0.2
 
 * League: Added simple ruleset and sample configs
