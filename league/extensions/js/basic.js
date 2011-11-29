@@ -3,7 +3,7 @@
  * Path will be prefixed with baseURL
  */
 var dependencies = [
-  "extensions/js/ext/jquery-1.6.2.js",
+  "extensions/js/ext/jquery-1.7.1.js",
   "extensions/js/ext/sammy-0.6.3.js",
   "extensions/js/ext/socket.io.js",
 
