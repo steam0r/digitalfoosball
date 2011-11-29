@@ -70,7 +70,7 @@ var data = {
   rev: config.rev,
   scoreboard: config.scoreboard,
   config: JSON.stringify({
-    production: /\bproduction\b/.test(process.env.NODE_ENV),
+    env: process.env.NODE_ENV,
     scoreboard: config.scoreboard,
     ga: config.ga,
     socketconf: config.socketconf

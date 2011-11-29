@@ -17,7 +17,7 @@ df.socket = (function() {
     });
 
     socket.on("message", function(msg) {
-      !df.config.production && console.log("message: " + JSON.stringify(msg));
+      df.config.env !== "production" && console.log("message: " + JSON.stringify(msg));
 
       if (JSON.stringify(msg) === JSON.stringify(message)) { return; }
       message = msg;
