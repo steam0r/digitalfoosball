@@ -9,11 +9,11 @@ df.socket = (function() {
     });
 
     socket.on("connect", function() {
-      df.publish("socket:clientId", socket.id);
+      df.publish("socket:clientId", socket.socket.sessionid);
     });
 
     socket.on("reconnect", function() {
-      df.publish("socket:clientId", socket.id);
+      df.publish("socket:clientId", socket.socket.sessionid);
     });
 
     socket.on("message", function(msg) {

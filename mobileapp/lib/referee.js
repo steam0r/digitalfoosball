@@ -9,7 +9,7 @@ var sys = require("sys"),
 
 var kickertable = {
   view: "home",
-  host: null,
+  host: undefined,
   game: {
     type: "game",
     start: 0,
@@ -139,13 +139,13 @@ te.subscribe("socket:connect", function(client) {
 });
 
 te.subscribe("socket:message", function(client, msg) {
-  kickertable.host = client.sessionId;
+  kickertable.host = client.id;
   clearTimeout(finalTimeout);
   (events[msg.event]) && events[msg.event](msg.data);
 });
 
 te.subscribe("socket:disconnect", function(client) {
-  if (kickertable.host == client.sessionId) {
+  if (kickertable.host == client.id) {
     kickertable.host = undefined;
     te.publish("referee:update", kickertable)
   };
