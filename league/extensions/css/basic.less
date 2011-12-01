@@ -110,10 +110,10 @@ header{
 	#s2k-flexbox > .display;
 	#s2k-flexbox > .pack > .end;
 	#s2k-flexbox > .orient > .vertical;
-	position: absolute;
+	position: fixed;
 	top:0;
-	left:0;
-	right:0;
+	left: 0;
+	right: 0;
 	z-index: 1;
 	height:121px;
 	min-width: 980px;
@@ -124,9 +124,7 @@ header{
 	border-bottom: 4px solid @s2k-darkgreen;
 	#s2k-box > .border;
 	#s2k-gradient > .toolbar;
-	-webkit-transform: translate3d(0,0,0);
-	-webkit-animation-name:acceleratedReveal;
-	-webkit-animation-duration:1s;
+	#s2k-animation > .header;
 	#logo{
 		position: absolute;
 		top:21px;
@@ -260,11 +258,5 @@ header{
 		bside{
 		    right: 0;
 		}
-	}
-}
-/* displays gt 1024*/
-@media screen and (min-device-width:1025px) {
-	header{
-	  position: fixed;
 	}
 }
