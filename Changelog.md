@@ -2,6 +2,10 @@
 
 ### 0.2.1
 
+* Header and scoreboard animations now pure CSS3
+* Added error handling for statistics of unknown users
+* Fixed Google Analytics integration
+* Fixed master device detection
 * Updated socket.io to 0.8.7
 * Updated zepto.js to 0.8
 
