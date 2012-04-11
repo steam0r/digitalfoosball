@@ -87,9 +87,12 @@ var addGoal = function(scorer) {
   
   if (kickertable.view == "scoreboard") {
     kickertable.game.goals.push(goal);
-    var team_score = kickertable.game.goals.filter(function(g) { return goal.scorer === g.scorer; }).length;
-    var opponent_score = kickertable.game.goals.filter(function(g) { return goal.scorer !== g.scorer; }).length;
-    if( (team_score >= ruleset.min && team_score - opponent_score >= ruleset.diff) || (team_score === ruleset.max) ) {
+
+    var goals = kickertable.game.goals.reduce(function(prev, curr) {++prev[curr.scorer]; return prev; }, {home: 0, visitors: 0}),
+        leader = Math.max(goals.home, goals.visitors),
+        trailer = Math.min(goals.home, goals.visitors);
+
+    if (leader >= ruleset.min && leader - trailer >= ruleset.diff || leader >= ruleset.max) {
       te.publish("referee:update", kickertable);
       finalTimeout = setTimeout(function(){
         kickertable.view = "summary";
