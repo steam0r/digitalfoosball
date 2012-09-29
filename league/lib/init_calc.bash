@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NODE_BIN=/usr/local/bin/node
+NODE_BIN=`which node`
 SCRIPT_NAME=`which $0`
 SCRIPT_PATH=`dirname $SCRIPT_NAME`
 CALC_BIN=$SCRIPT_PATH/calc.js
@@ -16,7 +16,7 @@ case "$1" in
 	echo "Stoping nodejs for league calculation..."
 	kill `cat /var/run/node_calc.pid`
 	;;
-    default)
+    *)
 	echo "Usage $0 {start|stop}"
 	;;
 esac
