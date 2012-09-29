@@ -7,8 +7,8 @@ var makeAnnouncement = function(type, game, time) {
   var goals = game.goals.reduce(function(prev, curr) {++prev[curr.scorer]; return prev; }, {home: 0, visitors: 0}),
       quickgame = game.players.home.length === 0,
       players = {
-        home: quickgame ? config.scoreboard.home : game.players.home.join(" " + locales["global.concat"] + " "),
-        visitors: quickgame ? config.scoreboard.visitors : game.players.visitors.join(" " + locales["global.concat"] + " ")
+        home: quickgame ? config.scoreboard.home : game.players.home.join(" " + locales.global['concat'] + " "),
+        visitors: quickgame ? config.scoreboard.visitors : game.players.visitors.join(" " + locales.global['concat'] + " ")
       },
       last_goal = game.goals.slice(~0)[0];
 
@@ -21,8 +21,8 @@ var makeAnnouncement = function(type, game, time) {
 
   var announcement = {
     type: type,
-    head: mustache.to_html(locales[["announcer", type, "head"].join(".")], data),
-    body: mustache.to_html(locales[["announcer", type, "body"].join(".")], data),
+    head: mustache.to_html(locales.announcer[type].head, data),
+    body: mustache.to_html(locales.announcer[type].body, data),
     time: time || undefined
   };
 

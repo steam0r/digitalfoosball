@@ -1,39 +1,72 @@
 {
   "locale": "en_EN",
-  "global.title": "Digital Foosball",
-  "global.concat": "and",
-  "toolbar.home": "Home",
-  "toolbar.undo": "Undo",
-  "toolbar.cancel": "Cancel",
-  "home.headline": "Welcome to DIGITAL FOOSBALL",
-  "home.text": "Wanna play a match?",
-  "home.gametype.2": "1 vs 1",
-  "home.gametype.4": "2 vs 2",
-  "home.gametype.0": "Quick Start",
-  "login.headline": "Enter opponent's names.",
-  "login.text": "Usernames with @ are used as Twitter IDs.",
-  "login.botton.go": "Let's go",
-  "summary.time": "Match ends after",
-  "summary.score": "Final Score",
-  "summary.tweet": "Sending Tweet…",
-  "summary.button.changeover": "Changeover",
-  "summary.quit": "Finish",
-  "dialog.title": "Warning",
-  "dialog.text": "The current game hasn't been started from this device. Cancel anyway?",
-  "dialog.confirm": "Yes",
-  "dialog.cancel": "No",
-  "announcer.start.head": "The game has started!",
-  "announcer.start.body": "{{#quickgame}}The players are unknown{{/quickgame}}{{^quickgame}}Players are: {{#players}}{{home}} versus {{visitors}}{{/players}}{{/quickgame}}",
-  "announcer.end.head": "That's it! Game is over!",
-  "announcer.end.body": "Final score: {{#goals}}{{home}}:{{visitors}}{{/goals}}",
-  "announcer.abort.head": "Game terminated!",
-  "announcer.abort.body": "Houston, we have a problem!",
-  "announcer.goal.head": "Goal! {{#goals}}{{home}}:{{visitors}} {{/goals}}for {{last_scorer}}",
-  "announcer.goal.body": "",
-  "announcer.foul.head": "Offside!",
-  "announcer.foul.body": "The last goal hasn't been scored! Still {{#goals}}{{home}}:{{visitors}}{{/goals}}",
-  "press.tweet.0players": "Game ended {{#goals}}{{home}}:{{visitors}} {{/goals}}. #id{{id}}{{#hashtags}} #{{.}}{{/hashtags}}",
-  "press.tweet.2players": "Nice one: {{#players}}{{winner}} {{/players}}won {{#goals}}{{winner}}:{{loser}} {{/goals}}versus {{#players}}{{loser}}{{/players}}. #id{{id}}{{#hashtags}} #{{.}}{{/hashtags}}",
-  "press.tweet.4players": "Awesome Teamplay: {{#players}}{{winner}} {{/players}}won {{#goals}}{{winner}}:{{loser}} {{/goals}}versus {{#players}}{{loser}}{{/players}}. #id{{id}}{{#hashtags}} #{{.}}{{/hashtags}}"
+  "global": {
+		"title": "Digital Foosball",
+  	"concat": "and"
+	},
+	"toolbar": {
+  	"home": "Home",
+  	"undo": "Undo",
+  	"cancel": "Cancel"
+	},
+	"home": {
+  	"headline": "Welcome to DIGITAL FOOSBALL",
+  	"text": "Wanna play a match?",
+		"gametype": {
+ 			"2": "1 vs 1",
+  		"4": "2 vs 2",
+  		"0": "Quick Start"
+		}
+ 	},
+	"login": {
+  	"headline": "Enter opponent's names.",
+  	"text": "Usernames with @ are used as Twitter IDs.",
+  	"button": {
+			"go": "Let's go"
+		}
+	},
+	"summary": {
+  	"time": "Match ends after",
+  	"score": "Final Score",
+  	"tweet": "Sending Tweet…",
+  	"button": {
+			"changeover": "Changeover"
+		},
+  	"quit": "Finish"
+	},
+	"dialog": {
+  	"title": "Warning",
+  	"text": "The current game hasn't been started from this device. Cancel anyway?",
+  	"confirm": "Yes",
+  	"cancel": "No"
+	},
+	"announcer": {
+		"start": {
+  		"head": "The game has started!",
+  		"body": "{{#quickgame}}The players are unknown{{/quickgame}}{{^quickgame}}Players are: {{#players}}{{home}} versus {{visitors}}{{/players}}{{/quickgame}}"
+		},
+		"end": {
+  		"head": "That's it! Game is over!",
+  		"body": "Final score: {{#goals}}{{home}}:{{visitors}}{{/goals}}"
+		},
+		"abort": {
+  		"head": "Game terminated!",
+  		"body": "Houston, we have a problem!"
+		},
+		"goal": {
+		 	"head": "Goal! {{#goals}}{{home}}:{{visitors}} {{/goals}}for {{last_scorer}}",
+  		"body": ""
+		},
+		"foul": {
+   		"head": "Offside!",
+  		"body": "The last goal hasn't been scored! Still {{#goals}}{{home}}:{{visitors}}{{/goals}}"
+		}
+	},
+	"press": {
+  	"tweet": {
+			"0players": "Game ended {{#goals}}{{home}}:{{visitors}} {{/goals}}. #id{{id}}{{#hashtags}} #{{.}}{{/hashtags}}",
+  		"2players": "Nice one: {{#players}}{{winner}} {{/players}}won {{#goals}}{{winner}}:{{loser}} {{/goals}}versus {{#players}}{{loser}}{{/players}}. #id{{id}}{{#hashtags}} #{{.}}{{/hashtags}}",
+  		"4players": "Awesome Teamplay: {{#players}}{{winner}} {{/players}}won {{#goals}}{{winner}}:{{loser}} {{/goals}}versus {{#players}}{{loser}}{{/players}}. #id{{id}}{{#hashtags}} #{{.}}{{/hashtags}}"
+		}
+	}
 }
-

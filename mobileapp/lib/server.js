@@ -1,5 +1,5 @@
 var http = require("http"),
-    sys = require("sys"),
+    sys = require("util"),
     socketio = require("socket.io"),
     fs = require("fs"),
     mustache = require("mustache"),
@@ -9,21 +9,24 @@ var http = require("http"),
     referee = require("./referee"),
     te = require("./tableevents").TableEvents;
 
-var app = express.createServer(),
-    sockapp = express.createServer(); 
+var app = express(),
+    sockapp = express(); 
+
+var appengine, sockappengine;
 
 app.configure(function() {
   app.set("views", __dirname + "/../views");
   app.set("view options", {layout: false});
   app.set("view engine", "html");
 
-  app.register(".html", {
-    compile: function(str, options){
-      return function(locals){
-        return mustache.to_html(str, locals);
-      };
-    }
+  app.engine(".html", function(path, options, fn) {
+  	fs.readFile(path, 'utf8', function(err, str)	{
+    	if (err) return fn(err);
+    	str = mustache.to_html(str, data);
+    	fn(null, str);
+  	});
   });
+
   //app.use(express.compiler({ src: __dirname + "/../public", enable: ["less"] }));
   app.use(express.favicon(__dirname + "/../public/images/favicons/fi_standard.ico"));
   app.use(express.static(__dirname + "/../public"));
@@ -77,9 +80,11 @@ var data = {
   })
 };
 
-for (var key in locales) {
-  data["locales." + key] = locales[key];
-}
+data.locales = locales;
+
+// for (var key in locales) {
+//  data["locales." + key] = locales[key];
+// }
 
 app.get('/', function(req, res){
   //don't switch scoreboard on wall mounted iPad
@@ -94,13 +99,13 @@ app.get("/dialog", function(req, res) {
   res.render("partials/dialog", data);
 });
 
-app.listen(config.server.port);
-sys.debug("\x1b[1mExpress server started on port " + app.address().port + "\x1b[0m");
+appengine = app.listen(config.server.port);
+sys.debug("\x1b[1mExpress server started on port " + appengine.address().port + "\x1b[0m");
 
-sockapp.listen(config.server.socketport);
-sys.debug("\x1b[1mExpress WebSocket server started on port " + sockapp.address().port + "\x1b[0m\n");
+sockappengine = sockapp.listen(config.server.socketport);
+sys.debug("\x1b[1mExpress WebSocket server started on port " + sockappengine.address().port + "\x1b[0m\n");
 
-var io = socketio.listen(sockapp);
+var io = socketio.listen(sockappengine);
 io.sockets.on("connection", function(socket) {
   te.subscribeOnce("referee:welcome", function(msg) {
     var copy = JSON.parse(JSON.stringify(msg));

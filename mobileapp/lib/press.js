@@ -1,4 +1,4 @@
-var sys = require("sys"),
+var sys = require("util"),
     http = require("http"),
     OAuth= require("oauth").OAuth,
     mustache = require("mustache"),
@@ -17,13 +17,13 @@ te.subscribe("referee:finalwhistle", function(game) {
   var data = {
         id: new Date(game.start).getTime(),
         players: {
-          winner: (home_won ? game.players.home : game.players.visitors).join(" " + locales["global.concat"] + " "),
-          loser: (!home_won ? game.players.home : game.players.visitors).join(" " + locales["global.concat"] + " ")
+          winner: (home_won ? game.players.home : game.players.visitors).join(" " + locales.global['concat'] + " "),
+          loser: (!home_won ? game.players.home : game.players.visitors).join(" " + locales.global['concat'] + " ")
         },
         goals: goals,
         hashtags: config.twitter.hashtags || []
       },
-      tweet = mustache.to_html(locales[["press.tweet.", game.players.home.concat(game.players.visitors).length, "players"].join("")], data);
+      tweet = mustache.to_html(locales.press.tweet[[game.players.home.concat(game.players.visitors).length, "players"].join("")], data);
 
   oAuth = new OAuth(
     "http://twitter.com/oauth/request_token",

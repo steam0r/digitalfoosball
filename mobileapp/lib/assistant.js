@@ -1,4 +1,4 @@
-var sys = require("sys"),
+var sys = require("util"),
     http = require("http"),
     fs = require("fs"),
     config = require("./config").config,
